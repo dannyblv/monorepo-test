@@ -1,0 +1,40 @@
+{
+  "name": "monorepo-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A monorepo workspace with Next.js, Vite, and shared components",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn dev:website1\" \"yarn dev:website2\" --names \"Next.js,Vite\" --prefix-colors \"blue,green\"",
+    "dev:website1": "yarn workspace website1 dev",
+    "dev:website2": "yarn workspace website2 dev",
+    "dev:all": "concurrently \"yarn dev:website1\" \"yarn dev:website2\" --names \"Next.js,Vite\" --prefix-colors \"blue,green\"",
+    "build:website1": "yarn workspace website1 build",
+    "build:website2": "yarn workspace website2 build",
+    "build:all": "yarn workspace website1 build && yarn workspace website2 build",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "yarn workspaces run type-check",
+    "clean": "yarn workspaces run clean"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=1.22.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
